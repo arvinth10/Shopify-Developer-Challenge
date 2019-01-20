@@ -10,4 +10,7 @@ Types::QueryType = GraphQL::ObjectType.define do
       "Hello World!"
     }
   end
+
+  field :allProducts, function: Resolvers::ProductsSearch
+
 end
