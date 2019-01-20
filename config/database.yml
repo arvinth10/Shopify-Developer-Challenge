@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: Shopify-Developer-Challenge_production
-  username: Shopify-Developer-Challenge
-  password: <%= ENV['SHOPIFY-DEVELOPER-CHALLENGE_DATABASE_PASSWORD'] %>
+ # username: Shopify-Developer-Challenge
+#  password: <%= ENV['SHOPIFY-DEVELOPER-CHALLENGE_DATABASE_PASSWORD'] %>
