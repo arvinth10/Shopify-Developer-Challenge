@@ -1,4 +1,5 @@
 require 'search_object/plugin/graphql'
+require 'search_object'
 
 class Resolvers::ProductsSearch
 
