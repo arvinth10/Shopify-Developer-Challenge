@@ -138,3 +138,111 @@ curl \
   --data '{"query":"query ($title: String){  allProducts (title: $title) {    id    title    price    inventory_count  }}","variables":{"title":"apple"}}' \
   https://web-api-shopify.herokuapp.com/graphql
 ```
+
+## Add Products
+
+**Method:** POST
+
+**Description:** Add a new product to the system
+
+**Required parameters for createProduct:**
+
+- title: String - Title of product
+  
+- price: Float - Price of product
+
+- inventory_count: Int - Inventory of product
+
+#### Request Body
+
+```
+{  
+   "query":"mutation ($title: String!, $price: Float!, $inventory_count:Int!){  createProduct(title: $title, price: $price, inventory_count: $inventory_count) {   id    title    price    inventory_count  }}",
+   "variables":{  
+      "title":"light",
+      "price":4.99,
+      "inventory_count":5
+   }
+}
+```
+
+#### Sample Respone
+
+```
+{
+  "data": {
+    "createProduct": {
+      "id": "8",
+      "title": "light",
+      "price": 4.99,
+      "inventory_count": 5
+    }
+  }
+}
+```
+
+#### Curl Example
+```
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"query":"mutation ($title: String!, $price: Float!, $inventory_count:Int!){  createProduct(title: $title, price: $price, inventory_count: $inventory_count) {   id    title    price    inventory_count  }}","variables":{"title":"light","price":4.99,"inventory_count":5}}' \
+  https://web-api-shopify.herokuapp.com/graphql
+```
+
+## Purchase Product
+
+
+**Method:** POST
+
+**Description:** Purchase product
+
+**Required parameters for purchaseProduct:**
+
+- id: ID - Unique ID of product, which can be obtained from above Get Product calls
+  
+- quantity: Int - Quantity of product being purchase
+
+#### Request Body
+```
+{  
+   "query":"mutation ($id: ID!, $quantity: Int!){  purchaseProduct(id: $id, quantity:$quantity) {   id   title   price   inventory_count  }}",
+   "variables":{  
+      "id":1,
+      "quantity":1
+   }
+}
+```
+
+#### Sample Response When Purchase Successful
+```
+{
+  "data": {
+    "purchaseProduct": {
+      "id": "2",
+      "title": "book",
+      "price": 10.99,
+      "inventory_count": 9
+    }
+  }
+}
+```
+
+#### Sample Response When Purchase Not Successful
+```
+{
+  "data": {
+    "purchaseProduct": null
+  }
+}
+```
+
+#### Curl Example
+
+```
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"query":"mutation ($id: ID!, $quantity: Int!){  purchaseProduct(id: $id, quantity:$quantity) {   id   title   price   inventory_count  }}","variables":{"id":1,"quantity":1}}' \
+  https://web-api-shopify.herokuapp.com/graphql
+```
