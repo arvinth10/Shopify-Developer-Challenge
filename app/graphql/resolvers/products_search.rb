@@ -13,7 +13,7 @@ class Resolvers::ProductsSearch
     option :has_inventory, type: types.Boolean, with: :apply_inventory_filter
 
     def apply_title_filter(scope, value)
-        scope.where 'title LIKE ?',  value     
+        scope.where 'title LIKE \'%' + value + '%\''    
     end
 
     def apply_inventory_filter(scope,value)
