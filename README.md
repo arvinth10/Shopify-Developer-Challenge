@@ -1,24 +1,72 @@
-# README
+# Shopify Developer Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://docs.google.com/document/d/1J49NAOIoWYOumaoQCKopPfudWI_jsQWVKlXmw1f1r-4/edit
 
-Things you may want to cover:
+Built using Ruby on the Rails, GraphQL, and Postgresql
 
-* Ruby version
+# GraphiQL API Explorer
 
-* System dependencies
+https://web-api-shopify.herokuapp.com/graphiql
 
-* Configuration
+# API Endpoint
 
-* Database creation
+https://web-api-shopify.herokuapp.com/graphql
 
-* Database initialization
 
-* How to run the test suite
+# API Calls
 
-* Services (job queues, cache servers, search engines, etc.)
+## Get Products API
 
-* Deployment instructions
+**Method:** POST
 
-* ...
+**Description:** Get product in database based on parameters given
+
+**Optional parameters for allProducts:**
+
+- title: String - Find product with similar title
+  
+- has_inventory: Boolean - Show products that only has inventory or does not have inventory based on flag
+ 
+### Get All Products
+#### Request Body
+```
+{
+  allProducts() {
+    id
+    title
+    price
+    inventory_count
+  }
+}
+```
+
+#### Sample Response
+```
+{
+  "data": {
+    "allProducts": [
+      {
+        "id": "6",
+        "title": "cup",
+        "price": 3.49,
+        "inventory_count": 10
+      },
+      {
+        "id": "1",
+        "title": "book",
+        "price": 10.99,
+        "inventory_count": 3
+      }
+    ]
+  }
+}
+```
+#### Curl Example
+```
+curl \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"query":"{ allProducts { id title  price inventory_count  }}","variables":null,"operationName":null}' \
+  https://web-api-shopify.herokuapp.com/graphql
+```
+  
