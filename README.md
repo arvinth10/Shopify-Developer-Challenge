@@ -103,7 +103,7 @@ curl \
 ```
 
 
-### Get Products With Title
+### Get Products By Title
 
 #### Request Body
 ```
