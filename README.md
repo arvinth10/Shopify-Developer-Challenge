@@ -105,6 +105,8 @@ curl \
 
 ### Get Products By Title
 
+Note: This is currently case sensitive
+
 #### Request Body
 ```
 {  
